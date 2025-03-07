@@ -1,0 +1,114 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Change {
+  id Int @id @default(autoincrement())
+
+  // different identifiers in the external system
+  externalId     String  @unique
+  externalKey    String? @unique
+  externalNodeId String? @unique
+
+  // These are the fields that are in the external system
+  title              String?
+  type               ChangeTypes
+  status             Status      @default(OPEN)
+  resolution         Resolution?
+  creator            People      @relation(fields: [creatorId], references: [id])
+  labels             Label[]
+  creatorId          Int
+  externalUrl        String      @unique
+  externalCreatedAt  Int
+  externalUpdatedAt  Int
+  externalResolvedAt Int?
+
+  // We need a couple of spcific fields for code changes
+  branchNameHead String?
+  branchNameBase String?
+  repository     Repository? @relation(fields: [repositoryId], references: [id])
+  repositoryId   Int?
+
+  source   SourceTool @relation(fields: [sourceId], references: [id])
+  sourceId Int
+
+  resolutionTime Int? // in seconds
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ChangeTypes {
+  STORY
+  EPIC
+  SPIKE
+  TASK
+  DEFECT
+  PULL_REQUEST
+  UNKNOWN
+}
+
+model Repository {
+  id            Int      @id @default(autoincrement())
+  externalId    String   @unique
+  name          String
+  owner         String
+  fullName      String   @unique
+  url           String   @unique
+  language      String?
+  defaultBranch String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  Changes       Change[]
+}
+
+enum Resolution {
+  DONE
+  WONT_DO
+  DUPLICATE
+  INCOMPLETE
+  POSTPONED
+  REOPENED
+  CLOSED
+  MERGED
+  UNKNOWN
+}
+
+enum Status {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+  UNKNOWN
+}
+
+model Label {
+  id                Int                @id @default(autoincrement())
+  name              String             @unique
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  changes           Change[]
+}
+
+model People {
+  id               Int                @id @default(autoincrement())
+  externalId       String             @unique
+  externalUrl      String?
+  name             String?
+  email            String?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Changes          Change[]
+}
+
+model SourceTool {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Changes          Change[]
+}
