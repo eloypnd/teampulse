@@ -51,6 +51,8 @@ Key technologies:
 - SQLite
 - Jest for testing
 
+More details about Backend service in [/backend/README](./backend/README.md).
+
 ### Frontend (`/frontend`)
 
 A React Single Page Application (SPA) that provides insights into the team health and processes efficiency.
@@ -63,88 +65,29 @@ Key technologies:
 - React Query
 - Vite
 
-## Installation
+More details about Fronted UI in [/frontend/README](./frontend/README.md).
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/TeamPulse.git
-cd TeamPulse
+## Quick Start
 
-# Install backend dependencies
-cd backend
-npm install
-
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
-
-## Usage
-
-### Backend Setup
-
-1. Configure your backend environment variables:
-
-```bash
-cd backend
-cp .env.example .env
-```
-
-2. Set up the database:
-
-```bash
-npm run db:migrate
-npm run db:seed  # Optional: adds sample data
-```
-
-3. Start the backend server:
-
-```bash
-npm run dev  # Runs on http://localhost:3000
-```
-
-### Database Setup
-
-#### Seeding the Database
-
-The project includes seed data to help you get started quickly. To populate your database with initial data:
-
-1. First, ensure your database migrations are up to date:
-
-```bash
-npm run db:migrate
-```
-
-2. Run the seed command:
-
-```bash
-npm run db:seed
-```
-
-The seed data is maintained in `prisma/data` folder.
-
-### Frontend Setup
-
-1. Configure your frontend environment variables:
-
-```bash
-cd frontend
-```
-
-2. Start the frontend development server:
-
-```bash
-npm run dev  # Runs on http://localhost:5173
-```
-
-### Running the Complete Stack
-
-You can also use the root package.json to run both services:
-
-```bash
-# From the project root
-npm run dev  # Runs both frontend and backend
-```
+1. Clone the repository
+   ```bash
+   git clone git@github.com:eloypnd/teampulse.git && cd teampulse
+   ```
+1. Install backend dependencies
+   ```bash
+   cd backend && npm install
+   ```
+1. Set up the database with sample data:
+   ```bash
+   npm run db:migrate && npm run db:seed
+   ```
+1. Install frontend dependencies
+   ```bash
+   cd ../frontend && npm install
+   ```
+1. Start services:
+   - API: go to [backend](./backend/) folder and `npm run dev`
+   - UI: go to [frontend](./frontend/) folder and `npm run dev`
 
 ## Contributing
 
@@ -179,9 +122,4 @@ These are some of the metrics that I aim to be addind in the future:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-
-Feel free to update the content with more specific details about your implementation, configuration options, and deployment instructions as the project evolves.
-```
+This project is licensed under the MIT License.
