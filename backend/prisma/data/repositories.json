@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "externalId": "repo_123",
+        "name": "team-pulse",
+        "owner": "organization",
+        "fullName": "organization/team-pulse",
+        "url": "https://github.com/organization/team-pulse",
+        "language": "TypeScript",
+        "defaultBranch": "main"
+    }
+]
