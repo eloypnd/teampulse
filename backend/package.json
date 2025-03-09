@@ -1,5 +1,5 @@
 {
-  "name": "my-express-prisma-app",
+  "name": "teampulse-backend",
   "version": "1.0.0",
   "main": "src/serve.ts",
   "scripts": {
