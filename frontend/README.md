@@ -8,6 +8,8 @@ It's pretty bare-bones right now, but we're just getting started!
 
 A super simple dashboard that shows your team's DORA metrics. That's it! (for now 😉)
 
+![TeamPulse UI v0](./docs/ui-screenshot.png)
+
 - 📊 Single-page dashboard
 - 📈 DORA metrics visualization
 - 🎨 Dead simple UI (like, really simple)

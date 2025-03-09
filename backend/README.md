@@ -48,7 +48,9 @@ The instructions for installing this project are in the root [README](../README.
 
 This project is meant to be runned locally, therefore the databese of choice is SQLite to keep things simple.
 
-The other database related choice in this project is to use Prisma ORM for defining the [data model](./prisma/schema.prisma) and handling data operations.
+The other database related choice in this project is to use Prisma ORM for defining the [data model](./prisma/schema.prisma) and handling data operations:
+
+![Data Model Diagram](./docs/data-diagram.png)
 
 #### Database operations
 
