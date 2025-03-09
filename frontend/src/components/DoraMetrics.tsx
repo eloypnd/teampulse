@@ -38,7 +38,7 @@ const DoraMetrics = ({ data }: DoraMetricsProps) => {
         <Metric
           label="Change Failure Rate"
           helperText="Percentage of deployments causing a failure in production."
-          value={data?.changeFailureRate * 100}
+          value={(data?.changeFailureRate * 100).toFixed(2)}
           unit="%"
         />
         <Metric
