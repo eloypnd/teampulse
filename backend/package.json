@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "src/serve.ts",
   "scripts": {
-    "db:migrate": "npx prisma migrate",
+    "db:migrate": "prisma migrate dev",
     "dev": "nodemon src/serve.ts",
     "build": "tsc",
     "start": "node dist/serve.js",
-    "test": "jest"
+    "test": "jest",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
@@ -35,5 +36,8 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
   }
 }
