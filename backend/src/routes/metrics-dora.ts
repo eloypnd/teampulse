@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { DateISO8601toUnix } from "../utils/index";
-import { calculateDoraMetrics, DoraMetrics } from "@/domain/metrics/dora";
+import { calculateDoraMetrics, DoraMetrics } from "../domain/metrics/dora";
 
 const prisma = new PrismaClient();
 
