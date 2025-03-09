@@ -7,7 +7,7 @@
 .env.*.local
 
 # Build output
-/dist
+**/dist
 dist-ssr
 /build
 /.next
