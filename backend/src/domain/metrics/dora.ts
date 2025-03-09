@@ -107,7 +107,11 @@ function calculateDeploymentRecoveryTime(fixedDefects: Change[]): Metric {
       0
     ) / count;
 
-  return defectsResolutionTime;
+  const defectsResolutionTimeInHours = Number(
+    (defectsResolutionTime / 3600).toFixed(2)
+  );
+
+  return defectsResolutionTimeInHours;
 }
 
 export const calculateDoraMetrics = async (
