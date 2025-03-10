@@ -6,7 +6,7 @@ dotenv.config();
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 const REPOSITORIES = [
-  { owner: "deliveryhero", repo: "dh-ncr-baldur" },
+  { owner: "fill in owner", repo: "fill in name" },
   // Add more repositories as needed
 ];
 
@@ -26,7 +26,9 @@ async function upsertPullRequestToDatabase(pr: any) {
 async function savePullRequests(data: any) {
   const pullRequests = data.map(mapGithubPullRequestToChange);
 
-  const results = await  Promise.all(pullRequests.map(upsertPullRequestToDatabase));
+  const results = await Promise.all(
+    pullRequests.map(upsertPullRequestToDatabase)
+  );
 
   return results;
 }
@@ -73,7 +75,6 @@ async function fetchAllPullRequests(owner: string, repo: string) {
 
       console.log(`Saved ${totalSavedPullRequests} pull requests ...`);
       console.log(`In this batch ${results.length}`);
-
     } catch (error) {
       console.error(`Error fetching PRs:`, error);
       break;

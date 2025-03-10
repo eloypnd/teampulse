@@ -48,7 +48,7 @@ The instructions for installing this project are in the root [README](../README.
 
 This project is meant to be runned locally, therefore the databese of choice is SQLite to keep things simple.
 
-The other database related choice in this project is to use Prisma ORM for defining the [data model](./prisma/schema.prisma) and handling data operations:
+It uses Prisma ORM for defining the [data model](./prisma/schema.prisma) and handling data operations:
 
 ![Data Model Diagram](./docs/data-diagram.png)
 
@@ -94,6 +94,19 @@ To run the tests, use:
 npm run test
 ```
 
+### Fetching the data from external tools.
+
+Make sure you fill in your Github and/or Jira API keys in `.env` file.
+
+- Fetch pull requests from Github project
+  ```bash
+  npx ts-node src/commands/github/pullRequests.ts
+  ```
+- Fetch issues from Jira
+  ```bash
+  npx ts-node src/commands/jira/issues.ts
+  ```
+
 ## Folder Structure
 
 - `src/` - Contains the source code for the application
@@ -104,10 +117,6 @@ npm run test
   - `types/` - Defines TypeScript interfaces
   - `utils/` - Utility functions
 - `prisma/` - Contains the Prisma schema and seed data
-
-## Database Setup and Seeding
-
-The application uses Prisma as the ORM and includes seed data for development purposes.
 
 ## License
 
