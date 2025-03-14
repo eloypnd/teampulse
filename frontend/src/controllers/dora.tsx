@@ -1,34 +1,24 @@
-import { useQuery } from "@tanstack/react-query";
+import { Flex } from "@chakra-ui/react";
 import DoraMetrics from "../components/DoraMetrics";
-
-function getDefaultUrl(): URL {
-  const to = new Date().toISOString().split("T")[0];
-  const from = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
-
-  const apiUrl = new URL("http://localhost:3000/api/metrics/dora");
-  apiUrl.searchParams.append("from", from as string);
-  apiUrl.searchParams.append("to", to as string);
-
-  return apiUrl;
-}
+import DateSelector, { DateRange } from "../components/DateSelector";
+import { useState } from "react";
+import { useDoraMetrics } from "../services/metrics/dora";
 
 const DoraController = () => {
-  const url = getDefaultUrl();
-
-  const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ["doraMetrics"],
-    queryFn: async () => {
-      const response = await fetch(url);
-      return await response.json();
-    },
-  });
+  const [dateRange, setDateRange] = useState<DateRange>();
+  const { isPending, error, data, isFetching } = useDoraMetrics(dateRange);
 
   if (isPending || isFetching) return "Loading";
   if (error) return "Error";
 
-  return <DoraMetrics data={data} />;
+  return (
+    <>
+      <Flex justifyContent="flex-end" mb={4}>
+        <DateSelector onRangeSelect={setDateRange} />
+      </Flex>
+      <DoraMetrics data={data} />
+    </>
+  );
 };
 
 export default DoraController;
